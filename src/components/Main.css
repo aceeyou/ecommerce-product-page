@@ -50,6 +50,7 @@ main {
 
 .popup-pill-container-hidden {
   position: fixed;
+  /* bottom: -100px; */
   bottom: -100px;
   left: 50%;
   transform: translateX(-50%);
@@ -58,12 +59,18 @@ main {
 
 .popup-pill-container-shown {
   position: fixed;
-  bottom: 50px;
+  /* bottom: 50px; */
+  bottom: 260px;
   left: 50%;
+  width: 70%;
+  padding: 40px 0;
+  border-radius: 10px;
+  background-color: rgba(0, 0, 0, 0.6);
   transform: translateX(-50%);
 }
 
 .popup-pill-shown {
+  margin: 0 auto;
   padding: 10px 20px;
   background-color: var(--Orange);
   width: max-content;
@@ -145,6 +152,7 @@ main {
   flex-direction: row;
   align-items: center;
   position: relative;
+  flex-wrap: nowrap;
 }
 
 .price-container .discounted-price {
@@ -163,8 +171,16 @@ main {
   margin: 0 auto 0 15px;
 }
 
+.price-container .discount-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  /* margin-bottom: 10px; */
+}
+
 .price-container .original-price-container {
   position: relative;
+  margin-left: auto;
 }
 
 .price-container .original-price::after {
@@ -315,10 +331,11 @@ main {
   }
 
   .price-container .discount-container {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
     margin-bottom: 10px;
+  }
+
+  .price-container .original-price-container {
+    margin-left: unset;
   }
 
   .counter-cart {
@@ -336,6 +353,14 @@ main {
   .add-to-cart-button {
     padding: 0;
     flex: 1;
+  }
+
+  .popup-pill-container-shown {
+    bottom: 50px;
+    width: unset;
+    padding: unset;
+    border-radius: 0px;
+    background-color: transparent;
   }
 }
 

@@ -11,7 +11,7 @@
   /* custom styles */
   --box-shadow-bottom: 0 2px 20px 5px rgba(230, 229, 229, 0.5);
   --box-shadow-bottom-cart: 0 4px 20px 5px rgba(209, 209, 209, 0.5);
-  --box-shadow-bottom-orange: 0px 10px 8px 2px hsla(26, 100%, 55%, 0.233);
+  --box-shadow-bottom-orange: 0px 10px 20px hsla(26, 100%, 55%, 0.233);
   --box-shadow-right: 2px 0px 20px 5px rgba(15, 15, 15, 0.5);
   --screen-width: 65vw;
 }

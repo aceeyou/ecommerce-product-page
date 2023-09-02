@@ -75,7 +75,7 @@ function Button({
   icon,
   altText,
   className,
-  onClick,
+  onClick = () => {},
   hasBadge = false,
   len = 0,
   cartItems,
@@ -83,20 +83,25 @@ function Button({
 }) {
   const [cartOpen, setCartOpen] = useState(false);
   return (
-    <button className={`button ${className}`} onClick={onClick}>
+    <button
+      className={`button ${className}`}
+      onClick={() => (cartItems ? setCartOpen(!cartOpen) : onClick())}
+    >
       <img
         src={icon}
         alt={altText}
-        onClick={() => setCartOpen((current) => !current)}
+        // onClick={() => cartItems && setCartOpen((current) => !current)}
       />
       {hasBadge && <Badge len={len} />}
-      {cartOpen && (
-        <CartView
-          cartItems={cartItems}
-          setCartOpen={setCartOpen}
-          onRemoveItem={onRemoveItem}
-        />
-      )}
+      <div className="cart-view-container">
+        {cartOpen && (
+          <CartView
+            cartItems={cartItems}
+            setCartOpen={setCartOpen}
+            onRemoveItem={onRemoveItem}
+          />
+        )}
+      </div>
     </button>
   );
 }
@@ -117,22 +122,29 @@ function CartView({ cartItems, setCartOpen, onRemoveItem }) {
   return (
     <div className="cart-view" ref={outerClickRef}>
       <p className="header">Cart</p>
-      <div className="cart__item-list">
-        {cartItems &&
-          cartItems?.map((item, i) => (
-            <CartItem
-              cartItems={item}
-              productName={item.productName}
-              quantity={item.quantity}
-              price={item.price}
-              key={i}
-              onRemoveItem={onRemoveItem}
-            />
-          ))}
-      </div>
-      <div className="cart__checkout-btn-container">
-        <button className="cart__checkout-btn">Checkout</button>
-      </div>
+      {cartItems.length > 0 ? (
+        <>
+          <div className="cart__item-list">
+            {cartItems?.map((item, i) => (
+              <CartItem
+                cartItems={item}
+                productName={item.productName}
+                quantity={item.quantity}
+                price={item.price}
+                key={i}
+                onRemoveItem={onRemoveItem}
+              />
+            ))}
+          </div>
+          <div className="cart__checkout-btn-container">
+            <button className="cart__checkout-btn">Checkout</button>
+          </div>
+        </>
+      ) : (
+        <div className="cart__empty">
+          <p className="cart__empty-text">Your cart is empty</p>
+        </div>
+      )}
     </div>
   );
 }
